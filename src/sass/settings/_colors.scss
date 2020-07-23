@@ -1,0 +1,40 @@
+@import '../tools/_functions.sass';
+
+$teal: () !default;
+$teal: map-deep-merge(
+  (
+    'base': #009688,
+    'lighten-5': #e0f2f1,
+    'lighten-4': #b2dfdb,
+    'lighten-3': #80cbc4,
+    'lighten-2': #4db6ac,
+    'lighten-1': #26a69a,
+    'darken-1': #00897b,
+    'darken-2': #00796b,
+    'darken-3': #00695c,
+    'darken-4': #004d40,
+    'accent-1': #a7ffeb,
+    'accent-2': #64ffda,
+    'accent-3': #1de9b6,
+    'accent-4': #00bfa5
+  ),
+  $teal
+);
+
+$shades: () !default;
+$shades: map-deep-merge(
+  (
+    'black': #000000,
+    'white': #FFFFFF,
+    'transparent': transparent
+  ),
+  $shades
+);
+
+$colors: () !default;
+$colors: map-deep-merge(
+  (
+    'teal': $teal
+  ),
+  $colors
+);

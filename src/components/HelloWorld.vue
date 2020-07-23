@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <h1>{{ $t('general.welcome') }}</h1>
+    <h1 class="boilerplate"><span class="teal--text">{{ $t('general.welcome') }}</span></h1>
     <p>
       For a guide and recipes on how to configure / customize this project,<br>
       check out the
