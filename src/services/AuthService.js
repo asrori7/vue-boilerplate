@@ -22,8 +22,8 @@ class AuthService extends BaseService {
     const data = {
       username,
       password,
-      client_id: process.env.VUE_APP_API_CLIENT_ID,
-      client_secret: process.env.VUE_APP_API_CLIENT_SECRET,
+      client_id: process.env.VUE_APP_CLIENT_ID,
+      client_secret: process.env.VUE_APP_CLIENT_SECRET,
       grant_type: 'password',
       scope: ''
     }
@@ -32,14 +32,25 @@ class AuthService extends BaseService {
   }
 
   /**
-   * Method used to register the user.
+   * Method used to get info the user.
    *
    * @param {Object} data The register data.
    *
    * @returns {Promise} The result in a promise.
    */
-  register (data) {
-    return this.submit('post', `${this.endpoint}/register`, data)
+  infoUserLogin () {
+    return this.submit('get', '/login-info')
+  }
+
+  /**
+   * Method used to logout the user.
+   *
+   * @param {Object} data The logout data.
+   *
+   * @returns {Promise} The result in a promise.
+   */
+  logout () {
+    return this.submit('post', `${this.endpoint}/logout`)
   }
 }
 

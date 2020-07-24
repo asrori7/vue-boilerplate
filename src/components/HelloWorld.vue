@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <h1 class="boilerplate" v-if="$can('read')"><span class="teal--text">{{ $t('general.welcome') }}</span></h1>
+    <h1 class="boilerplate" v-if="$can('login')"><span class="teal--text">{{ $t('general.welcome') }}</span></h1>
     <button @click="deletaAbility()">Delete</button>
     <p>
       For a guide and recipes on how to configure / customize this project,<br>
@@ -39,6 +39,10 @@ export default {
   name: 'HelloWorld',
   props: {
     msg: String
+  },
+
+  mounted () {
+    console.log(this.$ability)
   },
 
   methods: {

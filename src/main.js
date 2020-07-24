@@ -6,15 +6,16 @@ import router from './router'
 import store from './store'
 import i18n from './plugins/i18n'
 import { abilitiesPlugin } from '@casl/vue'
-import { buildAbilityFor } from './config/ability'
+import { defineAbilityFor } from './config/ability'
 
-const ability = buildAbilityFor()
+const ability = defineAbilityFor()
 
 if (process.env.NODE_ENV !== 'production') {
   // exposed for debugging
   window.ability = ability
 }
 
+Vue.prototype.$debug = process.env.NODE_ENV !== 'production'
 Vue.config.productionTip = false
 Vue.use(abilitiesPlugin, ability)
 

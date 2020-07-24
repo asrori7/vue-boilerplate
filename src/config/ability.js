@@ -1,17 +1,13 @@
-import { AbilityBuilder, Ability, detectSubjectType } from '@casl/ability'
+import { Ability, AbilityBuilder, detectSubjectType } from '@casl/ability'
 
 export function defineRulesFor () {
   const { can, rules } = new AbilityBuilder()
 
-  can(['read', 'create'])
-  // can(['update', 'delete'], 'Todo', { assignee: 'me' })
+  can(['login', 'logout'])
 
   return rules
 }
 
-/**
- * Read for details: https://stalniy.github.io/casl/v4/en/guide/subject-type-detection
- */
 function detectAppSubjectType (subject) {
   if (subject && typeof subject === 'object' && subject.kind) {
     return subject.kind
@@ -20,7 +16,7 @@ function detectAppSubjectType (subject) {
   return detectSubjectType(subject)
 }
 
-export function buildAbilityFor () {
+export function defineAbilityFor () {
   return new Ability(defineRulesFor(), {
     detectSubjectType: detectAppSubjectType
   })

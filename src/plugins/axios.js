@@ -2,6 +2,7 @@
 
 import Vue from 'vue'
 import axios from 'axios'
+import store from '@/store'
 
 // Full config:  https://github.com/axios/axios#request-config
 // axios.defaults.baseURL = process.env.baseURL || process.env.apiUrl || '';
@@ -9,7 +10,7 @@ import axios from 'axios'
 // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 const config = {
-  // baseURL: process.env.baseURL || process.env.apiUrl || ""
+  baseURL: process.env.VUE_APP_API_URL
   // timeout: 60 * 1000, // Timeout
   // withCredentials: true, // Check cross-site Access-Control
 }
@@ -19,6 +20,10 @@ const _axios = axios.create(config)
 _axios.interceptors.request.use(
   function (config) {
     // Do something before request is sent
+    if (store.getters['auth/isLogin']) {
+      // eslint-disable-next-line dot-notation
+      config.headers.common['Authorization'] = `Bearer ${store.getters['auth/token']}`
+    }
     return config
   },
   function (error) {
@@ -41,6 +46,8 @@ _axios.interceptors.response.use(
 
 Plugin.install = function (Vue, options) {
   Vue.axios = _axios
+  Vue.$axios = _axios
+  Vue.$http = _axios
   window.axios = _axios
   Object.defineProperties(Vue.prototype, {
     axios: {
